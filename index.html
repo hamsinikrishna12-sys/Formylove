@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>For My Love ❤️</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(120deg, #0f0c29, #302b63, #24243e);
+      color: white;
+      overflow-x: hidden;
+    }
+
+    /* Click-to-Reveal Overlay */
+    #intro {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      z-index: 9999;
+    }
+
+    #intro h1 {
+      color: #ff69b4;
+      font-size: 3rem;
+      text-align: center;
+      margin-bottom: 20px;
+      animation: glow 2s infinite alternate;
+    }
+
+    #intro button {
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 10px;
+      background: #ff69b4;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 0 20px #ff1493;
+      transition: 0.3s;
+    }
+
+    #intro button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 30px #ff69b4;
+    }
+
+    section {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 1.2s ease;
+    }
+
+    section.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    img {
+      max-width: 320px;
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(255, 105, 180, 0.6);
+      margin-bottom: 25px;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    p {
+      max-width: 700px;
+      text-align: center;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: #ffd6e8;
+    }
+
+    h1 {
+      font-size: 3rem;
+      text-align: center;
+      color: #ff9ecb;
+      text-shadow: 0 0 20px #ff69b4;
+      animation: glow 2s infinite alternate;
+    }
+
+    .hearts span {
+      position: fixed;
+      bottom: -20px;
+      color: pink;
+      font-size: 20px;
+      animation: rise linear infinite;
+    }
+
+    @keyframes rise {
+      from { transform: translateY(0) scale(1); opacity: 1; }
+      to { transform: translateY(-120vh) scale(1.5); opacity: 0; }
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #ff69b4; }
+      to { text-shadow: 0 0 25px #ff1493; }
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0); }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Click-to-Reveal Intro -->
+  <div id="intro">
+    <h1>Click to Reveal ❤️</h1>
+    <button id="revealBtn">Reveal My Love</button>
+  </div>
+
+  <!-- Sections -->
+  <section>
+    <img src="https://i.postimg.cc/XJvgfqwL/Screenshot-2026-01-04-00-15-18-346-com-google-android-apps-photos-2.jpg">
+    <p>
+      your eyes are so breathtaking and serene my love .. I am so lucky because
+      I get to be admired by those beautifule brow eyes
+    </p>
+  </section>
+
+  <section>
+    <img src="https://i.postimg.cc/wjKFC6pv/IMG-20250719-WA0033.jpg">
+    <p>
+      The moment you hug me all the stress and worries I carry just fades away like nothing,
+      I just find home in your arms and listening to your heartbeat is so peaceful
+    </p>
+  </section>
+
+  <section>
+    <img src="https://i.postimg.cc/431jBYj6/IMG-20251019-155205.jpg">
+    <p>
+      Your cute little smile, laugh giggle like a baby always gets me and the way you kiss me
+      with those soft subtle honey like lips is so soothing and feels so unreal
+    </p>
+  </section>
+
+  <section>
+    <img src="https://i.postimg.cc/m2Nqbz21/IMG-20250827-231622.jpg">
+    <p>
+      I love you so much baby, you are the best thing that has ever happened to me last year,
+      I cherish every moments we had and spend together ❤<br><br>
+      Mwahhhh 🫂❤🤗
+    </p>
+  </section>
+
+  <section>
+    <h1>I love you baby ❤️</h1>
+  </section>
+
+  <div class="hearts"></div>
+
+  <script>
+    // Click-to-Reveal
+    const intro = document.getElementById('intro');
+    const revealBtn = document.getElementById('revealBtn');
+    revealBtn.addEventListener('click', () => {
+      intro.style.display = 'none';
+    });
+
+    // Scroll animation
+    const sections = document.querySelectorAll("section");
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+        }
+      });
+    }, { threshold: 0.2 });
+
+    sections.forEach(sec => observer.observe(sec));
+
+    // Floating hearts
+    const heartsContainer = document.querySelector('.hearts');
+    setInterval(() => {
+      const heart = document.createElement('span');
+      heart.innerHTML = '❤';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (3 + Math.random() * 3) + 's';
+      heartsContainer.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }, 300);
+  </script>
+
+</body>
+</html>
